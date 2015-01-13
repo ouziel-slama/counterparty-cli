@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from setuptools import setup, find_packages
+import py2exe
 import os
 
 def readme():
@@ -35,7 +36,14 @@ setup_options = {
     'zip_safe': False,
     'dependency_links': required_repos,
     'install_requires': required_packages,
-    'scripts': ['bin/counterparty-client', 'bin/counterparty-server']
+    'scripts': ['bin/counterparty-client', 'bin/counterparty-server'],
+    'console': ['bin/counterparty-client', 'bin/counterparty-server'],
+    'zipfile': 'library/site-packages.zip',
+    'options': {
+        "py2exe": {
+            "skip_archive": 1
+        }
+    }
 }
 
 setup(**setup_options)
